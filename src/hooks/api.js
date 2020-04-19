@@ -114,7 +114,7 @@
 import { slugify } from '../util/slugify';
 
 export function getQuizzes() {
-	return JSON.parse(localStorage.getItem('quizzes') || '[]');
+	return JSON.parse(getLocalStorage().getItem('quizzes') || '[]');
 }
 
 export function getQuiz(slugName) {
@@ -129,7 +129,7 @@ export function addQuiz(name, questions = []) {
 		questions
 	};
 	quizzes.push(newQuiz);
-	localStorage.setItem('quizzes', JSON.stringify(quizzes));
+	getLocalStorage().setItem('quizzes', JSON.stringify(quizzes));
 	return quizzes;
 }
 
@@ -140,7 +140,7 @@ export function removeQuiz(name, questions = []) {
 		questions
 	};
 	quizzes.push(newQuiz);
-	localStorage.setItem('quizzes', JSON.stringify(quizzes));
+	getLocalStorage().setItem('quizzes', JSON.stringify(quizzes));
 	return quizzes;
 }
 
@@ -149,5 +149,14 @@ export function setQuiz(quiz) {
 	const i = quizzes.findIndex(({ name }) => name === quiz.name);
 	if (i !== -1) quizzes[i] = quiz;
 	else throw Error('Quiz does not exist');
-	localStorage.setItem('quizzes', JSON.stringify(quizzes));
+	getLocalStorage().setItem('quizzes', JSON.stringify(quizzes));
+}
+
+function getLocalStorage() {
+	if (typeof window === 'undefined')
+		return {
+			getItem: () => {},
+			setItem: () => {}
+		};
+	else return localStorage;
 }

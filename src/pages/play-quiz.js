@@ -31,9 +31,9 @@ const AnswersWrapper = styled.div`
 	width: 80%;
 `;
 
-export default () => {
+export default ({ location }) => {
 	const { name: slugName } = queryString.parse(location.search);
-	const { current: quiz } = useRef(getQuiz(slugName));
+	const { current: quiz } = useRef(getQuiz(slugName) || {});
 	const [currentQuestion, setCurrentQuestion] = useState({});
 	const [currentTime, setCurrentTime] = useState(timeout);
 	const ref = React.useRef(0);

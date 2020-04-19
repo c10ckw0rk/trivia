@@ -4,7 +4,7 @@
  * This is suitable for case insensitive URL keyword slugs.
  * It isn't suitable for case sensitive Ids.
  */
-export function slugify(strToConvert, maxSlugLength) {
+export function slugify(strToConvert = '', maxSlugLength) {
 	let str = strToConvert;
 	str = str.replace(/^\s+|\s+$/g, ''); // trim
 	str = str.toLowerCase();

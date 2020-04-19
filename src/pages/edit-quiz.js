@@ -124,7 +124,7 @@ const PlayQuiz = styled(AddQuestion)`
 
 export default function EditQuiz({ location }) {
 	const { name: slugName } = queryString.parse(location.search);
-	const quiz = useRef(getQuiz(slugName));
+	const quiz = useRef(getQuiz(slugName) || {});
 	const [questions, setQuestions] = useState(quiz.current.questions);
 
 	const addQuestion = () => {
@@ -169,7 +169,7 @@ export default function EditQuiz({ location }) {
 				`
 			}}>
 			<QuizTitle>{quiz.current.name}</QuizTitle>
-			{questions.map((question, i) => (
+			{(questions || []).map((question, i) => (
 				<Question key={i} question={question} index={i} onRemove={removeQuestion(i)} onChange={onQuestionChange} />
 			))}
 			<BottomBar>
