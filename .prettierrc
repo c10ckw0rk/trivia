@@ -1,7 +1,22 @@
 {
-  "endOfLine": "lf",
-  "semi": false,
-  "singleQuote": false,
-  "tabWidth": 2,
-  "trailingComma": "es5"
+	"singleQuote": true,
+	"jsxBracketSameLine": true,
+	"printWidth": 120,
+	"useTabs": true,
+	"overrides": [
+		{
+			"files": "*.json",
+			"options": {
+				"useTabs": false,
+				"tabWidth": 2
+			}
+		},
+		{
+			"files": "*.md",
+			"options": {
+				"printWidth": 100,
+				"proseWrap": "always"
+			}
+		}
+	]
 }
